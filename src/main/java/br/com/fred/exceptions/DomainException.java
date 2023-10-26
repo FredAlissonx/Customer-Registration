@@ -1,7 +1,6 @@
 package br.com.fred.exceptions;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 public class DomainException extends Exception{
     @Serial

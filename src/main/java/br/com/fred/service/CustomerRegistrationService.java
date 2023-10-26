@@ -135,7 +135,7 @@ public class CustomerRegistrationService implements ICustomerValidation{
             JOptionPane.showMessageDialog(null, cpf + " does not exist in our register", "Notremoved", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
     //Will be implemented
     public static void edit(Customer customer){
     }

@@ -139,7 +139,6 @@ public class CustomerRegistrationService implements ICustomerValidation{
     //Will be implemented
     public static void edit(Customer customer){
     }
-
     private static void exit() {
         JOptionPane.showMessageDialog(null,
                 "Thanks for using our system!",

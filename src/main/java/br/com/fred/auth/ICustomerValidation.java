@@ -30,7 +30,16 @@ public interface ICustomerValidation {
         // if list of errors is empty
         return cpfValidator.invalidMessagesFor(cpf).isEmpty();
     }
-    default Boolean isPhoneNumberValid(String data){
+    default Boolean isPhoneNumberValid(String phoneNumber){
+
+        // Replaces all non-numerics characters (including spaces, tab, etc.)
+        phoneNumber = phoneNumber.replaceAll("\\D", "");
+
+        // verify if it has valid length
+        if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 11)) return false;
+        
+
         return true;
+
     }
 }

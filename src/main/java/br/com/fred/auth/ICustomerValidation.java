@@ -37,9 +37,9 @@ public interface ICustomerValidation {
 
         // verify if it has valid length
         if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 11)) return false;
-        
+        // verify if phoneNumber begin with 9
+        if (phoneNumber.length() == 11 && Integer.parseInt(phoneNumber.substring(2,3)) != 9) return false;
 
-        return true;
-
+        return false;
     }
 }

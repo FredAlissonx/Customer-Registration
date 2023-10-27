@@ -93,7 +93,11 @@ public class CustomerRegistrationService implements ICustomerValidation{
             displayInvalidMessage("Invalid CPF, please try again!");
             return;
         }
-
+        // validate Phone number
+        else if (!customerValidation.isPhoneNumberValid(phoneNumber)){
+            displayInvalidMessage("Invalid phone number, please try again!");
+            return;
+        }
 
 
         Customer customer;

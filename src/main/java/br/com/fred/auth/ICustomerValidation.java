@@ -62,6 +62,8 @@ public interface ICustomerValidation {
         //if the number has length 10, it's not a smartphone number that why after DDD needs to be 2, 3, 4, 5, or 7
         Integer[] prefix = {2, 3, 4, 5, 7};
         // after all validations right, return true
-        return phoneNumber.length() == 10 && Arrays.asList(prefix).contains(Integer.parseInt(phoneNumber.substring(0, 2)));
+        if(phoneNumber.length() == 10 && !Arrays.asList(prefix).contains(Integer.parseInt(phoneNumber.substring(2,3)))) return false;
+
+        return true;
     }
 }

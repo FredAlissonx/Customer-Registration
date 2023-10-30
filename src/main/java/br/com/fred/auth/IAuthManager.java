@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public interface ICustomerValidation {
+public interface IAuthManager {
     default Boolean isDataNull(String[] data){
         return data.length < 7;
     }

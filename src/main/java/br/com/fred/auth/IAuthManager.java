@@ -7,9 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface IAuthManager {
-    default Boolean isDataNull(String[] data){
-        return data.length < 7;
-    }
     default Boolean isCustomerNameValid(String customerName){
         // reference how to validate a name:
         // https://www.geeksforgeeks.org/how-to-validate-a-username-using-regular-expressions-in-java/
@@ -31,11 +28,13 @@ public interface IAuthManager {
     }
     default Boolean isPhoneNumberValid(String phoneNumber){
 
-        // Replaces all non-numerics characters (including spaces, tab, etc.)
-        phoneNumber = phoneNumber.replaceAll("\\D", "");
+        // Define a regular expression pattern to match if it has a non-number char
+        String numericRegex = "^\\d+$";
+        if (!phoneNumber.matches(numericRegex)) return false;
 
         // verify if it has valid length
         if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 11)) return false;
+
         // verify if phoneNumber begin with 9
         if (phoneNumber.length() == 11 && Integer.parseInt(phoneNumber.substring(2,3)) != 9) return false;
 
@@ -43,6 +42,7 @@ public interface IAuthManager {
         Pattern pattern = Pattern.compile(phoneNumber.charAt(0) + "{"+phoneNumber.length()+"}");
 
         Matcher matcher = pattern.matcher(phoneNumber);
+        // check if matcher finds a match string
         if (matcher.find()) return false;
 
         // valid DDD
@@ -56,11 +56,13 @@ public interface IAuthManager {
                 86, 87, 88, 89, 91, 92, 93, 94, 95,
                 96, 97, 98, 99
         };
+
         // verify if contains phoneNumber DDD
         if (!Arrays.asList(dddCode).contains(Integer.parseInt(phoneNumber.substring(0, 2)))) return false;
-
+        
         //if the number has length 10, it's not a smartphone number that why after DDD needs to be 2, 3, 4, 5, or 7
         Integer[] prefix = {2, 3, 4, 5, 7};
+
         // after all validations right, return true
         if(phoneNumber.length() == 10 && !Arrays.asList(prefix).contains(Integer.parseInt(phoneNumber.substring(2,3)))) return false;
 

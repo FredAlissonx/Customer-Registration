@@ -39,9 +39,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "br.com.fred.domain.Customer{" +
-                "name='" + name + '\'' +
-                ", cpf=" + cpf +
-                '}';
+        return "Name: " + name + ", CPF: " + cpf;
     }
 }

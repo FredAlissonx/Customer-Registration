@@ -4,6 +4,7 @@ import br.com.fred.auth.IAuthManager;
 import br.com.fred.dao.CustomerMapDAO;
 import br.com.fred.dao.ICustomerDAO;
 import br.com.fred.domain.Customer;
+
 import javax.swing.*;
 import java.util.Set;
 
@@ -85,7 +86,7 @@ public class CustomerRegistrationService implements IAuthManager {
         }
 
         //validate CPF(personal identifier in Brazil)
-        // cpf generator to test: https://www.geradordecpf.org/
+        // cpf generator to test: 1
         else if (!customerValidation.isCpfValid(cpf)) {
             UserInterfaceServices.displayInvalidMessage("Invalid CPF, please try again!");
             return;
@@ -139,7 +140,7 @@ public class CustomerRegistrationService implements IAuthManager {
         }
     }
 
-    //Will be implemented
+    //TODO: Edit option
     public static void edit(Customer customer) {
     }
 

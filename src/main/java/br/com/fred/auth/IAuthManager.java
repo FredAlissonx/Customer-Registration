@@ -1,13 +1,14 @@
 package br.com.fred.auth;
 
 import br.com.caelum.stella.validation.CPFValidator;
+import br.com.fred.enums.EAreaCodeDDD;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface IAuthManager {
-    default Boolean isCustomerNameValid(String customerName){
+    default Boolean isCustomerNameValid(String customerName) {
         // reference how to validate a name:
         // https://www.geeksforgeeks.org/how-to-validate-a-username-using-regular-expressions-in-java/
         String regex = "^[A-Za-z]\\w{3,29}$";
@@ -20,52 +21,43 @@ public interface IAuthManager {
 
         return matcher.matches();
     }
-    default Boolean isCpfValid(String cpf){
+
+    default Boolean isCpfValid(String cpf) {
         // class from caelum-stella-core to validate CPF
         CPFValidator cpfValidator = new CPFValidator();
         // if list of errors is empty
         return cpfValidator.invalidMessagesFor(cpf).isEmpty();
     }
-    default Boolean isPhoneNumberValid(String phoneNumber){
+
+    default Boolean isPhoneNumberValid(String phoneNumber) {
+
+        // A number cannot start with 0
+        if (phoneNumber.length() != 11 && phoneNumber.length() != 10 || phoneNumber.charAt(0) == '0') return false;
 
         // Define a regular expression pattern to match if it has a non-number char
-        String numericRegex = "^\\d+$";
-        if (!phoneNumber.matches(numericRegex)) return false;
+        String notNonNumericCharacter = "^\\d+$";
+        if (!phoneNumber.matches(notNonNumericCharacter)) return false;
 
-        // verify if it has valid length
-        if (!(phoneNumber.length() >= 10 && phoneNumber.length() <= 11)) return false;
+        //if phoneNumber length is equal 11, need to start with 9 after DDD
+        String startsWithNineAfterDDD = "^(?!9.{2}).{11}$\n";
+        if (phoneNumber.matches(startsWithNineAfterDDD)) return false;
 
-        // verify if phoneNumber begin with 9
-        if (phoneNumber.length() == 11 && Integer.parseInt(phoneNumber.substring(2,3)) != 9) return false;
+        String areAllTheSameCharacter = "^(.)\\1*$\n";
+        if (phoneNumber.matches(areAllTheSameCharacter)) return false;
 
-        // verify if all character in phoneNumber are the same
-        Pattern pattern = Pattern.compile(phoneNumber.charAt(0) + "{"+phoneNumber.length()+"}");
+        int DDD;
+        if (phoneNumber.length() == 11)
+            DDD = Integer.parseInt(phoneNumber.substring(0, 2));
+        else
+            DDD = Integer.parseInt(phoneNumber.substring(2, 3));
 
-        Matcher matcher = pattern.matcher(phoneNumber);
-        // check if matcher finds a match string
-        if (matcher.find()) return false;
 
-        // valid DDD
-        Integer[] dddCode = {
-                11, 12, 13, 14, 15, 16, 17, 18, 19,
-                21, 22, 24, 27, 28, 31, 32, 33, 34,
-                35, 37, 38, 41, 42, 43, 44, 45, 46,
-                47, 48, 49, 51, 53, 54, 55, 61, 62,
-                64, 63, 65, 66, 67, 68, 69, 71, 73,
-                74, 75, 77, 79, 81, 82, 83, 84, 85,
-                86, 87, 88, 89, 91, 92, 93, 94, 95,
-                96, 97, 98, 99
-        };
+        // Verify if EAreaCodeDDD enum values has phoneNumber DDD input
+        EAreaCodeDDD areaCodeDDD = Arrays.stream(EAreaCodeDDD.values())
+                .filter(enumValue -> Arrays.asList(enumValue.getDDD()).contains(DDD))
+                .findFirst()
+                .orElse(null);
 
-        // verify if contains phoneNumber DDD
-        if (!Arrays.asList(dddCode).contains(Integer.parseInt(phoneNumber.substring(0, 2)))) return false;
-        
-        //if the number has length 10, it's not a smartphone number that why after DDD needs to be 2, 3, 4, 5, or 7
-        Integer[] prefix = {2, 3, 4, 5, 7};
-
-        // after all validations right, return true
-        if(phoneNumber.length() == 10 && !Arrays.asList(prefix).contains(Integer.parseInt(phoneNumber.substring(2,3)))) return false;
-
-        return true;
+        return areaCodeDDD != null;
     }
 }

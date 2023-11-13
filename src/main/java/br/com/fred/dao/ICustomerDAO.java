@@ -1,13 +1,13 @@
 package br.com.fred.dao;
 
-import br.com.fred.domain.Customer;
+import br.com.fred.dto.CustomerDTO;
 
 import java.util.Collection;
 
-public interface ICustomerDAO {
-    Boolean register(Customer customer);
+public sealed interface ICustomerDAO permits CustomerMapDAO{
+    Boolean register(CustomerDTO customerDTO);
     void remove(Long cpf);
-    void edit(Customer customer);
-    Customer consult(Long cpf);
-    Collection<Customer> searchAll();
+    void edit(CustomerDTO customerDTO);
+    CustomerDTO consult(Long cpf);
+    Collection<CustomerDTO> searchAll();
 }

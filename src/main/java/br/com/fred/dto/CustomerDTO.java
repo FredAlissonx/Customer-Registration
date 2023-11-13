@@ -1,35 +1,36 @@
-package br.com.fred.domain;
+package br.com.fred.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
-@Setter
-@Getter
-public class Customer {
+@AllArgsConstructor
+@Data
+public class CustomerDTO {
 
-    private String name;
+    private String firstName;
+    private String lastName;
+    @Setter(value= AccessLevel.NONE) // it won´t generate a setter for cpf
     private Long cpf;
     private Long phoneNumber;
     private String address;
-    private Integer number;
     private String city;
     private String state;
-    public Customer(String name, String cpf, String phoneNumber, String address, String number, String city, String state) {
-        this.name = name;
+
+    public CustomerDTO(String firstName,String lastName, String cpf, String phoneNumber, String address, String city, String state) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.cpf = Long.valueOf(cpf.trim());
         this.phoneNumber = Long.valueOf(phoneNumber.trim());
         this.address = address;
-        this.number = Integer.valueOf(number);
         this.city = city;
         this.state = state;
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Customer customer)) return false;
-        return Objects.equals(cpf, customer.cpf);
+        if (!(o instanceof CustomerDTO customerDTO)) return false;
+        return Objects.equals(cpf, customerDTO.cpf);
     }
 
     @Override
@@ -39,6 +40,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", CPF: " + cpf;
+        return "Name: " + firstName + ", CPF: " + cpf;
     }
 }

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.Normalizer;
 
 public class AddressValidator {
     private static final String CSV_FILE_PATH = "src/main/java/br/com/fred/data/municipios.csv";
@@ -27,8 +28,8 @@ public class AddressValidator {
 
         while ((line = br.readLine()) != null) {
             String[] cityFields = line.split(",");
-            String matchUFState = cityFields[0];
-            String matchCity = cityFields[2].toUpperCase();
+            String matchUFState = removeAccents(cityFields[0]);
+            String matchCity = removeAccents(cityFields[2]);
 
             if (isMatchingAddress(city, state, matchCity, matchUFState)) return true;
         }
@@ -36,10 +37,13 @@ public class AddressValidator {
     }
 
     private static boolean isMatchingAddress(String city, String state, String matchCity, String matchUFState) {
-        boolean isCityMatch = matchCity.toUpperCase().equalsIgnoreCase(city);
+        boolean isCityMatch = matchCity.equalsIgnoreCase(city);
         boolean isUFStateMatch = matchUFState.equalsIgnoreCase(Integer.toString(EStatesUF.valueOf(state.toUpperCase()).getUF()));
 
         return isCityMatch && isUFStateMatch;
+    }
+    private static String removeAccents(String address){
+        return Normalizer.normalize(address, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
     }
 }
 

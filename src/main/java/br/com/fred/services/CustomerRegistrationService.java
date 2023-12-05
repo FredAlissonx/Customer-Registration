@@ -61,7 +61,6 @@ public class CustomerRegistrationService {
             }
 
             option = InputMessageUI.inputMessage("Type 1 to register, 2 to consult, 3 to consult all, 4 to remove, 5 to edit or 6 to exit");
-
         }
     }
 }

@@ -6,7 +6,6 @@ public class NameValidator {
     public static boolean isNameValid(String name){
 
         if (name == null) return false;
-
         return matchingName(name);
     }
     public static boolean matchingName(String name){

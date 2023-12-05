@@ -7,4 +7,5 @@ public class InputMessageUI {
         return JOptionPane.showInputDialog(null,
                 message,"", JOptionPane.INFORMATION_MESSAGE);
     }
+
 }

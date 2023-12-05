@@ -49,7 +49,6 @@ public class EditService {
                 "Current first name: " + customer.getFirstName() + "\nNew first name: "
         );
         if (!NameValidator.isNameValid(newFirstName)) return null;
-
         return newFirstName;
     }
     public static String lastNameEdit(CustomerDTO customer) {

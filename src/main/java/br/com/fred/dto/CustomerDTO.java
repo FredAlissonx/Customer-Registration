@@ -10,7 +10,7 @@ public class CustomerDTO {
 
     private String firstName;
     private String lastName;
-    @Setter(value= AccessLevel.NONE) // it won´t generate a setter for cpf
+    @Setter(value=AccessLevel.NONE) // it won´t generate a setter for cpf
     private String cpf;
     private Long phoneNumber;
     private String address;

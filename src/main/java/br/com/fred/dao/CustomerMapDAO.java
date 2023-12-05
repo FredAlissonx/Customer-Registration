@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public non-sealed class CustomerMapDAO implements ICustomerDAO {
-    private Map<Long, CustomerDTO> map; // key == cpf
+    private Map<String, CustomerDTO> map; // key = cpf
     public CustomerMapDAO(){
         this.map = new HashMap<>();
     }
@@ -22,7 +22,7 @@ public non-sealed class CustomerMapDAO implements ICustomerDAO {
     }
 
     @Override
-    public void remove(Long cpf) {
+    public void remove(String cpf) {
         CustomerDTO registeredCustomerDTO = map.get(cpf);
 
         if (registeredCustomerDTO != null)
@@ -44,13 +44,18 @@ public non-sealed class CustomerMapDAO implements ICustomerDAO {
     }
 
     @Override
-    public CustomerDTO consult(Long cpf) {
+    public CustomerDTO consult(String cpf) {
         return this.map.get(cpf);
     }
 
     @Override
     public Collection<CustomerDTO> searchAll() {
         return this.map.values();
+    }
+
+    @Override
+    public Map<String, CustomerDTO> searchAllByCpf() {
+        return map;
     }
 
     @Override

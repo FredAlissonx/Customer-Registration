@@ -11,7 +11,7 @@ public class CustomerDTO {
     private String firstName;
     private String lastName;
     @Setter(value= AccessLevel.NONE) // it won´t generate a setter for cpf
-    private Long cpf;
+    private String cpf;
     private Long phoneNumber;
     private String address;
     private String city;
@@ -20,7 +20,7 @@ public class CustomerDTO {
     public CustomerDTO(String firstName,String lastName, String cpf, String phoneNumber, String address, String city, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.cpf = Long.valueOf(cpf.trim());
+        this.cpf = cpf.trim();
         this.phoneNumber = Long.valueOf(phoneNumber.trim());
         this.address = address;
         this.city = city;

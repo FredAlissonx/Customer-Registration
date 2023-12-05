@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.text.Normalizer;
 
 public class AddressValidator {
-    private static final String CSV_FILE_PATH = "src/main/java/br/com/fred/data/municipios.csv";
+    private static final String CSV_FILE_PATH = "src/main/java/br/com/fred/data/brazil_cities.csv";
     public static boolean isAddressValid(String city, String state) {
         File file = new File(CSV_FILE_PATH);
 

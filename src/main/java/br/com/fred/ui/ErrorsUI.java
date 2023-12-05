@@ -6,4 +6,5 @@ public class ErrorsUI {
     public static void invalidMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "invalidData", JOptionPane.INFORMATION_MESSAGE);
     }
+
 }

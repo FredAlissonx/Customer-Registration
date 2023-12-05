@@ -26,5 +26,4 @@ public class ConsultAllService {
     public static boolean isConsultEmpty(Collection<CustomerDTO> customer){
         return customer.isEmpty();
     }
-
 }

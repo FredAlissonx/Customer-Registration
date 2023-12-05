@@ -10,6 +10,6 @@ public class ProgramExitHandler {
     public static void showExitMessage(){
         JOptionPane.showMessageDialog(null,
                 "Thanks for using our system!",
-                "ExitingProgram", JOptionPane.INFORMATION_MESSAGE);
+                "exitingprogram", JOptionPane.INFORMATION_MESSAGE);
     }
 }

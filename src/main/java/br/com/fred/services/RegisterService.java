@@ -28,7 +28,6 @@ public class RegisterService {
         String city = dataSeparatedByComma[4];
         String state = dataSeparatedByComma[5];
         String cep = dataSeparatedByComma[6];
-
         if (!validateInput(firstName, lastName, cpf, phoneNumber, city, state)) {
             return;
         }

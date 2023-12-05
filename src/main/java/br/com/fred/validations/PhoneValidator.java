@@ -17,7 +17,6 @@ public class PhoneValidator {
                 .filter(enumValue -> Arrays.asList(enumValue.getDDD()).contains(ddd))
                 .findFirst()
                 .orElse(null);
-
         return areaCodeDDD != null;
     }
 

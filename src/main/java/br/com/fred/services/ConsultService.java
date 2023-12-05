@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class ConsultService {
     public static void consult(ICustomerDAO iCustomerDAO, String data) {
-
         CustomerDTO customerDTO = iCustomerDAO.consult(data);
 
         if (customerDTO != null) {

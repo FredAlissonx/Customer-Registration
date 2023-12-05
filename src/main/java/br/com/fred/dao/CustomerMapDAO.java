@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public non-sealed class CustomerMapDAO implements ICustomerDAO {
-    private Map<String, CustomerDTO> map; // key == cpf
+    private Map<String, CustomerDTO> map; // key = cpf
     public CustomerMapDAO(){
         this.map = new HashMap<>();
     }

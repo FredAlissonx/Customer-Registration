@@ -1,6 +1,5 @@
 package br.com.fred.dao;
 
-import br.com.fred.dao.CustomerMapDAO;
 import br.com.fred.dto.CustomerDTO;
 
 import java.util.Collection;

@@ -10,7 +10,6 @@ public enum EFunctionalitiesOptions {
     REMOVE,
     EDIT,
     EXIT;
-
     public static EFunctionalitiesOptions getOptionFromInput(String option) {
         int enumIndex = Integer.parseInt(option) - 1;
         return EFunctionalitiesOptions.values()[enumIndex];

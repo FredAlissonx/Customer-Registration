@@ -10,7 +10,6 @@ public enum EEditOptions {
     STATE,
     CEP,
     ALL;
-
     public static EEditOptions getOptionFromInput(String option){
         int index = Integer.parseInt(option) - 1;
         return EEditOptions.values()[index];

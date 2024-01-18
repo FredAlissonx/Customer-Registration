@@ -45,6 +45,7 @@ public class AddressValidator {
 
         return isCityMatch && isUFStateMatch;
     }
+
     private static String removeAccents(String address){
         return Normalizer.normalize(address, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
     }

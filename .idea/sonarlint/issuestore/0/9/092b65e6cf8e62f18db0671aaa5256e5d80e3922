@@ -1,0 +1,7 @@
+
+v	java:S116"ZRename this field "CUSTOMER_BY_CPF" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö“Üù8×ÀŞÚÊ1
+z	java:S131!"YComplete cases by adding the missing enum constants or add a default case to this switch.(¸¥ƒúÿÿÿÿ8ªÁŞÚÊ1
+k
+java:S1128"IRemove this unused import 'br.com.customerregistration.ui.InputDialogUI'.(ÌÈÆÆüÿÿÿÿ8À¢ÁÀÑ1
+n
+java:S1128"LRemove this unused import 'br.com.customerregistration.ui.MessageDisplayUI'.(ƒÇââûÿÿÿÿ8À¢ÁÀÑ1

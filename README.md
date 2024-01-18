@@ -48,7 +48,7 @@ Follow these steps to set up and run the project on your local machine:
    ```bash
     java -jar target/customer-registration.jar
 
-
+## Linkedin: https://www.linkedin.com/in/fredalisson/
 
 
 

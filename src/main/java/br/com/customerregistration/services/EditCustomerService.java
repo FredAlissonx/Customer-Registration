@@ -122,6 +122,8 @@ public class EditCustomerService {
 
         if (!CepValidator.isCepValid(newCep))
             throw new IllegalArgumentException("Invalid CEP entered!");
+        if (newCep.equalsIgnoreCase(currentCEP))
+            throw new IllegalArgumentException("This already is the current last name!");
         else
             MessageDisplayUI.displayMessage("CEP changed with success!", "CEP changed");
 
